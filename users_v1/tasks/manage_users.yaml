@@ -4,5 +4,11 @@
     name: "{{ item.key }}"
     uid: "{{ item.value.uid }}"
     state: "{{ item.value.state | default('present') }}"
+    groups: >-
+      {{
+        (default_groups
+          + (item.value.additional_groups | default([]))
+        ) | unique | join(',')
+      }}
   loop: "{{ users | dict2items }}"
   when: item.value.state is defined
