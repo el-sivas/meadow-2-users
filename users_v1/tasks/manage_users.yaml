@@ -1,0 +1,8 @@
+- name: manage users { users }
+  # loop over variable users and create them with their key and uid, absent if state is absent, defult to present
+  ansible.builtin.user:
+    name: "{{ item.key }}"
+    uid: "{{ item.value.uid }}"
+    state: "{{ item.value.state | default('present') }}"
+  loop: "{{ users | dict2items }}"
+  when: item.value.state is defined

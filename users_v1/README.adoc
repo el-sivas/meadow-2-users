@@ -1,0 +1,17 @@
+= users 
+Version 1
+
+a simple role to manage users and uids
+
+== example config
+----
+users:
+
+  u9876:
+    uid: 9876
+    state: present 
+
+  a1234:
+    uid: 1234
+    state: absent
+----
